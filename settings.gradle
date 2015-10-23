@@ -1,0 +1,2 @@
+include ':multiimageshow'
+project(':multiimageshow').projectDir = new File('app')
