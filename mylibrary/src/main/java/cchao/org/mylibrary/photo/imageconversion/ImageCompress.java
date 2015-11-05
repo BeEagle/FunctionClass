@@ -2,11 +2,14 @@ package cchao.org.mylibrary.photo.imageconversion;
 
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.util.Base64;
+import android.util.Log;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 
 /**
+ * 压缩图片功能类
  * Created by chenchao on 15/11/5.
  */
 public class ImageCompress {
@@ -19,24 +22,28 @@ public class ImageCompress {
     //图片压缩率
     private int compressionRadio;
 
+    private Bitmap bitmap;
+    private BitmapFactory.Options options;
+    private byte[] bitmapBytes;;
+
     public ImageCompress(String imagePath, int compressionRadio){
         this.imagePath = imagePath;
         this.compressionRadio = compressionRadio;
     }
 
     /**
-     * 返回压缩图片
-     * @return
+     * 压缩图片
      */
-    public Bitmap getSmallBitmap() {
-        Bitmap bitmap = null;
-        final BitmapFactory.Options options = new BitmapFactory.Options();
+    private void compressImage(){
+        Log.i("testapplication_path", imagePath);
+        bitmap = null;
+        options = new BitmapFactory.Options();
+        baos = new ByteArrayOutputStream();
         options.inJustDecodeBounds = true;
         BitmapFactory.decodeFile(imagePath, options);
         options.inSampleSize = calculateInSampleSize(options, 480, 800);
         options.inJustDecodeBounds = false;
         try{
-            baos = new ByteArrayOutputStream();
             bitmap = BitmapFactory.decodeFile(imagePath, options);
             bitmap.compress(Bitmap.CompressFormat.JPEG, compressionRadio, baos);
         }finally{
@@ -47,7 +54,25 @@ public class ImageCompress {
                 e.printStackTrace();
             }
         }
+    }
+
+    /**
+     * 返回压缩图片Bitmap对象
+     * @return
+     */
+    public Bitmap getSmallBitmap() {
+        compressImage();
         return bitmap;
+    }
+
+    /**
+     * 返回转化为base64字符串图片
+     * @return
+     */
+    public String getSmallString(){
+        compressImage();
+        bitmapBytes = baos.toByteArray();
+        return Base64.encodeToString(bitmapBytes, Base64.DEFAULT);
     }
 
     /**
