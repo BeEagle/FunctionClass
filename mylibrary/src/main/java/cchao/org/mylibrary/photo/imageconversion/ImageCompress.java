@@ -3,7 +3,6 @@ package cchao.org.mylibrary.photo.imageconversion;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.util.Base64;
-import android.util.Log;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
@@ -35,7 +34,6 @@ public class ImageCompress {
      * 压缩图片
      */
     private void compressImage(){
-        Log.i("testapplication_path", imagePath);
         bitmap = null;
         options = new BitmapFactory.Options();
         baos = new ByteArrayOutputStream();
