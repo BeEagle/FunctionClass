@@ -1,2 +1,1 @@
-include ':multiimageshow'
-project(':multiimageshow').projectDir = new File('app')
+include ':mylibrary', ':testapplication'
