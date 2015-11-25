@@ -3,3 +3,4 @@
 
 * [仿微信多图查看](mylibrary/src/main/java/cchao/org/mylibrary/photo/multiimageshow)
 * [图片压缩](mylibrary/src/main/java/cchao/org/mylibrary/photo/imageconversion)
+* [简单的Http请求类](mylibrary/src/main/java/cchao/org/mylibrary/http/HttpUtil)

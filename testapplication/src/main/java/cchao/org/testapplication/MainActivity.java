@@ -36,6 +36,9 @@ public class MainActivity extends AppCompatActivity{
         super.onCreate(saveBundle);
         setContentView(R.layout.activity_main);
 
+        int maxMemory = (int) (Runtime.getRuntime().maxMemory() / 1024);
+        Log.d("TAG", "Max memory is " + maxMemory + "KB");
+
         imageView = (ImageView) findViewById(R.id.camera_image);
 
         urls = new ArrayList<>();
@@ -64,8 +67,7 @@ public class MainActivity extends AppCompatActivity{
         super.onActivityResult(requestCode, resultCode, data);
         if(requestCode == PICK_FROM_CAMERA && resultCode == -1){
             imageCompress = new ImageCompress(cameraFile.getPath(), 100);
-            imageView.setImageBitmap(imageCompress.getSmallBitmap());
-            Log.i("testapplication_str", imageCompress.getSmallString());
+            imageView.setImageBitmap(imageCompress.getSmallBitmap(480, 800));
         }
     }
 }

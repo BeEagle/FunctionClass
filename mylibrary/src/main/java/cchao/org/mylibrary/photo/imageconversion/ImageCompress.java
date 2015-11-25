@@ -30,16 +30,19 @@ public class ImageCompress {
         this.compressionRadio = compressionRadio;
     }
 
+
     /**
      * 压缩图片
+     * @param reqWidth  宽
+     * @param reqHeight 高
      */
-    private void compressImage(){
+    private void compressImage(int reqWidth, int reqHeight){
         bitmap = null;
         options = new BitmapFactory.Options();
         baos = new ByteArrayOutputStream();
         options.inJustDecodeBounds = true;
         BitmapFactory.decodeFile(imagePath, options);
-        options.inSampleSize = calculateInSampleSize(options, 480, 800);
+        options.inSampleSize = calculateInSampleSize(options, reqWidth, reqHeight);
         options.inJustDecodeBounds = false;
         try{
             bitmap = BitmapFactory.decodeFile(imagePath, options);
@@ -56,19 +59,23 @@ public class ImageCompress {
 
     /**
      * 返回压缩图片Bitmap对象
+     * @param reqWidth  宽
+     * @param reqHeight 高
      * @return
      */
-    public Bitmap getSmallBitmap() {
-        compressImage();
+    public Bitmap getSmallBitmap(int reqWidth, int reqHeight) {
+        compressImage(reqWidth, reqHeight);
         return bitmap;
     }
 
     /**
      * 返回转化为base64字符串图片
+     * @param reqWidth  宽
+     * @param reqHeight 高
      * @return
      */
-    public String getSmallString(){
-        compressImage();
+    public String getSmallString(int reqWidth, int reqHeight){
+        compressImage(reqWidth, reqHeight);
         bitmapBytes = baos.toByteArray();
         return Base64.encodeToString(bitmapBytes, Base64.DEFAULT);
     }
