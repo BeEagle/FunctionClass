@@ -30,7 +30,6 @@ public class ImageCompress {
         this.compressionRadio = compressionRadio;
     }
 
-
     /**
      * 压缩图片
      * @param reqWidth  宽
@@ -99,5 +98,4 @@ public class ImageCompress {
         }
         return inSampleSize;
     }
-
 }

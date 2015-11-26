@@ -15,6 +15,7 @@ import java.util.Map;
  * Created by chenchao on 15/11/25.
  */
 public class HttpUtil {
+
     private static final int TIMEOUT_IN_MILLIONS = 5000;
 
     public interface CallBack {
@@ -67,7 +68,7 @@ public class HttpUtil {
     /**
      * 异步Post请求
      * @param urlStr
-     * @param map   参数试map对象
+     * @param map   参数是map对象
      * @param callBack
      * @throws Exception
      */
