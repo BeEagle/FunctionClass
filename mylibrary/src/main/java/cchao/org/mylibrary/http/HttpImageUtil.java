@@ -40,7 +40,9 @@ public class HttpImageUtil {
     private Context context;
 
     public interface CallBack {
-        void onRequestComplete(Bitmap bitmap);
+        void onStart();
+        void onSuccess(Bitmap bitmap);
+        void onFailure();
     }
 
     public HttpImageUtil(Context context) {
@@ -80,12 +82,17 @@ public class HttpImageUtil {
                 Bitmap bitmap = null;
                 try {
                     if (callBack != null) {
+                        callBack.onStart();
                         bitmap = getBitmapFromMemoryCache(urlStr);
                         if (bitmap == null) {
                             bitmap = doGet(urlStr);
-                            callBack.onRequestComplete(bitmap);
+                            if (bitmap != null) {
+                                callBack.onSuccess(bitmap);
+                            } else {
+                                callBack.onFailure();
+                            }
                         } else {
-                            callBack.onRequestComplete(bitmap);
+                            callBack.onSuccess(bitmap);
                         }
                     }
                 } catch (Exception e) {

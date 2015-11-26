@@ -1,5 +1,7 @@
 package cchao.org.mylibrary.http;
 
+import android.graphics.Bitmap;
+
 import java.io.BufferedReader;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
@@ -19,7 +21,9 @@ public class HttpUtil {
     private static final int TIMEOUT_IN_MILLIONS = 5000;
 
     public interface CallBack {
-        void onRequestComplete(String result);
+        void onStart();
+        void onFailure();
+        void onSuccess(String result);
     }
 
     /**
@@ -31,9 +35,14 @@ public class HttpUtil {
         new Thread() {
             public void run() {
                 try {
-                    String result = doGet(urlStr);
                     if (callBack != null) {
-                        callBack.onRequestComplete(result);
+                        callBack.onStart();
+                        String result = doGet(urlStr);
+                        if (result != null) {
+                            callBack.onSuccess(result);
+                        } else {
+                            callBack.onFailure();
+                        }
                     }
                 } catch (Exception e) {
                     e.printStackTrace();
@@ -54,9 +63,14 @@ public class HttpUtil {
         new Thread() {
             public void run() {
                 try {
-                    String result = doPost(urlStr, params);
                     if (callBack != null) {
-                        callBack.onRequestComplete(result);
+                        callBack.onStart();
+                        String result = doPost(urlStr, params);
+                        if (result != null) {
+                            callBack.onSuccess(result);
+                        } else {
+                            callBack.onFailure();
+                        }
                     }
                 } catch (Exception e) {
                     e.printStackTrace();
@@ -77,14 +91,19 @@ public class HttpUtil {
         new Thread() {
             public void run() {
                 try {
-                    StringBuffer params = new StringBuffer();
-                    for (Map.Entry<String, String> mapParam : map.entrySet()) {
-                        params.append(mapParam.getKey() + "=" + mapParam.getValue() + "&");
-                    }
-                    params.deleteCharAt(params.length() - 1);
-                    String result = doPost(urlStr, params.toString());
                     if (callBack != null) {
-                        callBack.onRequestComplete(result);
+                        callBack.onStart();
+                        StringBuffer params = new StringBuffer();
+                        for (Map.Entry<String, String> mapParam : map.entrySet()) {
+                            params.append(mapParam.getKey() + "=" + mapParam.getValue() + "&");
+                        }
+                        params.deleteCharAt(params.length() - 1);
+                        String result = doPost(urlStr, params.toString());
+                        if (result != null) {
+                            callBack.onSuccess(result);
+                        } else {
+                            callBack.onFailure();
+                        }
                     }
                 } catch (Exception e) {
                     e.printStackTrace();
