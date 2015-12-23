@@ -86,7 +86,7 @@ public class ImageCompress {
      * @param reqHeight
      * @return
      */
-    public int calculateInSampleSize(BitmapFactory.Options options, int reqWidth, int reqHeight){
+    private int calculateInSampleSize(BitmapFactory.Options options, int reqWidth, int reqHeight){
         final int height = options.outHeight;
         final int widht = options.outWidth;
         int inSampleSize = 1;

@@ -5,19 +5,8 @@
 
     <Button
         android:id="@+id/button"
-        android:text="点我"
+        android:text="查看本地图片"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
-
-    <Button
-        android:id="@+id/button_camera"
-        android:text="拍照"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
-
-    <ImageView
-        android:id="@+id/camera_image"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent" />
 
 </LinearLayout>

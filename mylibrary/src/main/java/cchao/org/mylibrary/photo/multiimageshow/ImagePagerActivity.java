@@ -97,19 +97,13 @@ public class ImagePagerActivity extends FragmentActivity {
      */
     private void initImageLoad(){
         //ImageLoad初始化
-        DisplayImageOptions defaultOptions = new DisplayImageOptions.Builder() //
-                .showImageForEmptyUri(R.mipmap.ic_launcher) //
-                .showImageOnFail(R.mipmap.ic_launcher) //
-                .cacheInMemory(true) //
-                .cacheOnDisk(true) //
-                .build();//
-        ImageLoaderConfiguration config = new ImageLoaderConfiguration//
-                .Builder(getApplicationContext())//
-                .defaultDisplayImageOptions(defaultOptions)//
-                .discCacheSize(50 * 1024 * 1024)//
-                .discCacheFileCount(100)// 缓存一百张图片
-                .writeDebugLogs()//
-                .build();//
+//        DisplayImageOptions defaultOptions = new DisplayImageOptions.Builder() //
+//                .showImageForEmptyUri(R.drawable.image_load_error) //
+//                .showImageOnFail(R.drawable.image_load_error) //
+//                .cacheInMemory(true) //
+//                .cacheOnDisk(true) //
+//                .build();//
+        ImageLoaderConfiguration config = ImageLoaderConfiguration.createDefault(this);
         ImageLoader.getInstance().init(config);
     }
 
