@@ -6,3 +6,5 @@
 * [简单的Http请求类](mylibrary/src/main/java/cchao/org/mylibrary/http/HttpUtil.java)
 * [获取网络图片](mylibrary/src/main/java/cchao/org/mylibrary/http/HttpImageUtil.java)
 * [获取本地所有图片](mylibrary/src/main/java/cchao/org/mylibrary/photo/localimage/LocalImagesUri.java)
+* [应用数据清理](mylibrary/src/main/java/cchao/org/mylibrary/data/DataClearManager.java)
+* [获取cache大小](mylibrary/src/main/java/cchao/org/mylibrary/data/DataSizeManager.java)
